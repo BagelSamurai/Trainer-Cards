@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* PokéCenter site chrome */
+  --color-bg: #f7f9fb;
+  --color-surface: #ffffff;
+  --color-subtle: #f0f4f7;
+  --color-ink-1: #18242b;
+  --color-ink-2: #6b7c8a;
+  --color-ink-3: #8aa0ad;
+  --color-hairline: #e6ecef;
+  --color-accent: #ee1515;
+
+  --radius-pane: 16px;
+  --radius-input: 12px;
+
+  --shadow-pane: 0 1px 0 rgba(0, 0, 0, 0.02);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-subtle: var(--color-subtle);
+  --color-ink-1: var(--color-ink-1);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-hairline: var(--color-hairline);
+  --color-accent: var(--color-accent);
+
+  --radius-pane: var(--radius-pane);
+  --radius-input: var(--radius-input);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-bricolage);
+  --font-mono: var(--font-jetbrains);
+  --font-space: var(--font-space-grotesk);
+  --font-serif: var(--font-dm-serif);
+  --font-pixel: var(--font-vt323);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-ink-1);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Holo border shine sweep — used by Holo border style */
+@keyframes holo-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Holo conic rotation for the rainbow ring */
+@keyframes holo-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Game Boy scanlines */
+@keyframes scanlines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 8px;
+  }
+}
+
+/* Glass Holo card sweep */
+@keyframes glass-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-12deg);
+  }
+}
+
+/* Finalize stage entrance */
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: rotate(-2deg) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-2deg) translateY(0);
+  }
+}
+
+.tilt-card {
+  transform: rotate(-2deg);
+  transition: transform 280ms ease, box-shadow 280ms ease;
+  animation: card-rise 480ms ease-out;
+}
+.tilt-card:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Reusable hairline border helper */
+.hairline {
+  border: 1px solid var(--color-hairline);
+}
+
+/* Hide native number input arrows just in case */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::selection {
+  background: rgba(238, 21, 21, 0.18);
 }
