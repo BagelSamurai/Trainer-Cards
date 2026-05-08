@@ -4,7 +4,7 @@ Build a 6-Pokémon trainer card, theme it five different ways, and export it as 
 
 ## Project link
 
-- **Live demo**: _Add deployment URL once deployed_ (Vercel one-click works out of the box)
+- **Live demo**: https://trainer-cards.vercel.app/
 - **Repo**: https://github.com/BagelSamurai/Trainer-Cards
 
 
